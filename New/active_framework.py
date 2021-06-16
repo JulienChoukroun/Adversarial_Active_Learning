@@ -41,7 +41,7 @@ class MemoryCallback(Callback):
 #%%
 def active_training(labelled_data, network_name, img_size,
                     batch_size=64, epochs=10, repeat=5):
-    ## normalement epochs=100
+    
     x_L, y_L = labelled_data 
     
     # split into train and validation
@@ -332,13 +332,9 @@ def egl_selection(model, unlabelled_data, nb_data):
            (unlabelled_data[0][index_unlabelled], unlabelled_data[1][index_unlabelled])
            
 def adversarial_selection(model, unlabelled_data, nb_data, add_adv=False, repo='.', filename = None):
-    #model(tf.keras.Input((img_size))) #####
     img_size = model.get_input_shape_at(0)
-    #img_size=(10,1,28,28)
     n_channels, img_nrows, img_ncols = img_size[1:]
-    #model(tf.keras.Input((img_size)))
     nb_classes = model.get_output_shape_at(0)[-1]
-    #nb_classes=10
     active = Adversarial_DeepFool(model=model, n_channels=n_channels,
                                   img_nrows=img_nrows, img_ncols=img_ncols, nb_class=nb_classes)
     # select a subset of size 10*nb_data
@@ -348,9 +344,6 @@ def adversarial_selection(model, unlabelled_data, nb_data, add_adv=False, repo='
     # here consider or not the adv examples for pseudo labelling
     # pick option
     adversarial, attacks = active.generate(subset)
-    #sourceFile = open('demo.txt','w')
-    #print(option, file=sourceFile)
-    #sourceFile.close()
     
     if not(filename is None):
         # save the first adv
@@ -407,7 +400,6 @@ def active_learning(num_sample, data_name, network_name, active_name,
         i+=1
 
         model = active_training(labelled_data, network_name, img_size, batch_size=batch_size)
-        #model(tf.keras.Input((img_size))) #####
 
         query, unlabelled_data = active_selection(model, unlabelled_data, nb_query, active_name, repo, tmp_adv) # TO DO
         print('SUCCEED')
