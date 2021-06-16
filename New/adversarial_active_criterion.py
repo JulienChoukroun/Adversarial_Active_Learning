@@ -123,9 +123,6 @@ class Adversarial_DeepFool(Adversarial_example):
         #perturbations=[self.generate_sample(data[i:i+1]) for i in range(len(data))]
         ####method = ['euclidian', 'inf', 'fgm', 'bim', 'madry', 'mim']
         ####option = random.choice(method)
-        ####sourceFile = open('demo.txt','w')
-        ####print(option, file=sourceFile)
-        ####sourceFile.close()
         perturbations = []
         adv_attacks = []
         for i in range(len(data)):
@@ -207,10 +204,7 @@ class Adversarial_DeepFool(Adversarial_example):
         return score
          
     def generate_sample(self, true_image, option='euclidian'):
-        #sourceFile = open('demo.txt','w')
         assert option in ['euclidian', 'inf', 'fgm', 'bim', 'madry', 'mim'], ('unknown option %s',option)
-        #print(option, file=sourceFile)
-        #sourceFile.close()
         if option == 'euclidian':
             return self.generate_sample_euclidian(true_image)
         elif option == 'fgm':
