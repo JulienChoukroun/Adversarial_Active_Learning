@@ -13,4 +13,4 @@ Previous researches had proposed several selection strategies that proved to gre
 
 The main objective of my study was to conduct several experiments where a different adversarial attack was used at each iteration in the process. I was also tasked to evaluate the performance of the active learning models and their robustness against adversarial attacks.
 
-**Look at the report for more details**
+**Look at the [report](https://github.com/JulienChoukroun/Adversarial_Active_Learning/tree/master/Report) for more details**
